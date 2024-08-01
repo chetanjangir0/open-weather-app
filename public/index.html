@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Document</title>
+    <link rel="stylesheet" href="/input.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    <script type="module" defer src="/main.js"></script>
+</head>
+
+<body>
+    <ul class="flex flex-col sm:flex-row">
+        <li id="primary" class="w-screen h-screen bg-white space-y-11 sm:w-3/12">
+            <form id="searchBar" action="#" class="flex content-center justify-center w-60 h-10 bg-black bg-opacity-10 mt-6 mx-auto rounded-full">
+                <input id="searchInput" type="text" placeholder="Search for places..." name="q"
+                    class="bg-black bg-opacity-0 w-40 outline-none placeholder:text-black active:bg-transparent">
+                <button id="searchButton" type="submit" class="w-6"><img src="/images/search.png" alt=""></button>
+            </form>
+
+            <div><img id="weatherIcon" src="/images/weather/fewClouds.png" alt="" class="w-52 mt-6 mx-auto"></div>
+
+            <div id="temp" class="flex content-center justify-center">
+                <div id="currentTemp" class="w-min text-8xl">...</div>
+                <div class="w-6 text-4xl">&#8451;</div>
+            </div>
+
+            <div id="weatherData">
+                <div class="flex pl-7 pr-10">
+                    <img id="weatherIconSM" class="w-12 mt-1" src="http://openweathermap.org/img/wn/02d@2x.png" alt="">
+                    <div id="weather" class="text-5xl">...</div>
+                </div>
+    
+                <div id="weatherDescription" class="text-2xl pl-20">...</div>
+            </div>
+
+            <div id="locationLogo" class="flex pl-9">
+                <img class="h-11" src="/images/locationLogo.png" alt="">
+                <div id="place" class="text-2xl">...</div>
+            </div>
+
+            <div id="date" class="pl-20 text-2xl"></div>
+
+        </li>
+
+        <li id="secondary" class="flex flex-wrap w-screen h-auto justify-center sm:justify-self-auto sm:space-x-8 sm:content-around space-y-8 bg-zinc-800 sm:w-9/12">
+            <div></div>
+            <div class="w-80 h-64 rounded-xl bg-white transform transition duration-500 hover:scale-110">
+                <div class="text-3xl font-Nunito w-48 ml-3">Minimum Temprature</div>
+                <div class="flex justify-center py-7">
+                    <img class="inline w-20 " src="/images/tempDown.png" alt="">
+                    <div class="inline text-5xl" id="tempMinElement">.</div>
+                </div>
+            </div>
+
+            <div class="w-80 h-64 rounded-xl bg-white transform transition duration-500 hover:scale-110">
+                <div class="text-3xl font-Nunito w-48 ml-3">Maximum Temprature</div>
+                <div class="flex justify-center py-7">
+                    <img class="inline w-20" src="/images/tempUP.png" alt="">
+                    <div class="inline text-5xl" id="tempMaxElement">.</div>
+                </div>
+            </div>
+
+            <div class="w-80 h-64 rounded-xl bg-white transform transition duration-500 hover:scale-110">
+                <div class="text-3xl font-Nunito w-48 ml-3">Pressure</div>
+                <div class="flex justify-center py-16">
+                    <img class="inline w-20" src="/images/pressure.png" alt="">
+                    <div class="inline text-5xl" id="pressureElement">.</div> 
+                </div>
+            </div>
+
+            <div class="w-80 h-64 rounded-xl bg-white transform transition duration-500 hover:scale-110">
+                <div class="text-3xl font-Nunito w-48 ml-3">Humidity</div>
+                <div class="flex justify-center py-16">
+                    <img class="inline w-20" src="/images/humidity.png" alt="">
+                    <div class="inline text-5xl" id="humidityElement">.</div>
+                </div>
+            </div> 
+
+            <div class="w-80 h-64 rounded-xl bg-white transform transition duration-500 hover:scale-110">
+                <div class="text-3xl font-Nunito w-48 ml-3">Visibility</div>
+                <div class="flex justify-center py-16">
+                    <img class="inline w-20" src="/images/visibility.png" alt="">
+                    <div class="inline text-5xl" id="visibilityElement">.</div>
+                </div>
+            </div>
+            
+            <div class="w-80 h-64 rounded-xl bg-white transform transition duration-500 hover:scale-110">
+                <div class="text-3xl font-Nunito w-48 ml-3">Wind Speed</div>
+                <div class="flex justify-center py-16">
+                    <img class="inline w-20" src="/images/windspeed.png" alt="">
+                    <div class="inline text-5xl" id="windSpeedElement">.</div>
+                </div>
+            </div> 
+            
+        </li>
+    </ul>
+
+</body>
+
+</html>
