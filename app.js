@@ -10,6 +10,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 
 app.get('/api/weather', async (req, res) => {
+    if (!process.env.OPENWEATHERMAP_API_KEY){
+        console.error('there is not api key')
+
+    }
     try {
         let url;
         if (req.query.lat && req.query.lon) {
