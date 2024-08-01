@@ -1,13 +1,15 @@
-// Import weather icon images
-import clearUrl from '/images/weather/clear.png'
-import thunderstormUrl from '/images/weather/thunderstorm.png'
-import snowUrl from '/images/weather/snow.png'
-import fewCloudsUrl from '/images/weather/fewClouds.png'
-import scatteredCloudsUrl from '/images/weather/scatteredClouds.png'
-import brokenCloudsUrl from '/images/weather/brokenClouds.png'
-import showerRainUrl from '/images/weather/showerRain.png'
-import rainUrl from '/images/weather/rain.png'
-import mistUrl from '/images/weather/mist.png'
+
+const weatherIcons = {
+    clear: '/images/weather/clear.png',
+    thunderstorm: '/images/weather/thunderstorm.png',
+    snow: '/images/weather/snow.png',
+    fewClouds: '/images/weather/fewClouds.png',
+    scatteredClouds: '/images/weather/scatteredClouds.png',
+    brokenClouds: '/images/weather/brokenClouds.png',
+    showerRain: '/images/weather/showerRain.png',
+    rain: '/images/weather/rain.png',
+    mist: '/images/weather/mist.png'
+};
 
 // DOM elements
 const elements = {
@@ -61,18 +63,18 @@ function updateUI(data) {
 // Function to get weather icon based on conditions
 function getWeatherIcon(main, detail) {
     switch (main) {
-        case "Clear": return clearUrl;
-        case "Thunderstorm": return thunderstormUrl;
-        case "Snow": return snowUrl;
+        case "Clear": return weatherIcons.clear;
+        case "Thunderstorm": return weatherIcons.thunderstorm;
+        case "Snow": return weatherIcons.snow;
         case "Clouds":
-            if (detail === "few clouds") return fewCloudsUrl;
-            if (detail === "scattered clouds") return scatteredCloudsUrl;
-            return brokenCloudsUrl;
-        case "Drizzle": return showerRainUrl;
+            if (detail === "few clouds") return weatherIcons.fewClouds;
+            if (detail === "scattered clouds") return weatherIcons.scatteredClouds;
+            return weatherIcons.brokenClouds;
+        case "Drizzle": return weatherIcons.showerRain;
         case "Rain":
-            if (detail.includes("shower")) return showerRainUrl;
-            return rainUrl;
-        default: return mistUrl;
+            if (detail.includes("shower")) return weatherIcons.showerRain;
+            return weatherIcons.rain;
+        default: return weatherIcons.mist;
     }
 }
 
@@ -101,16 +103,20 @@ async function getWeatherByCity(city) {
 }
 
 // Event listener for search button
-elements.searchButton.addEventListener('click', (event) => {
+elements.searchButton.addEventListener('click', async (event) => {
     event.preventDefault();
     const searchValue = elements.searchInput.value.trim();
     if (searchValue) {
-        getWeatherByCity(sanitizeString(searchValue));
+        await getWeatherByCity(sanitizeString(searchValue));
     }
 });
 
 // Get user's location and fetch weather data
 navigator.geolocation.getCurrentPosition(
-    (position) => getWeatherByCoords(position.coords.latitude, position.coords.longitude),
-    () => alert("Couldn't find your location. Please search for a city.")
+    async (position) => await getWeatherByCoords(position.coords.latitude, position.coords.longitude),
+    async () => {
+        alert("Couldn't find your location. Please search for a city.")
+        await getWeatherByCity(sanitizeString('delhi'))
+
+    }
 );

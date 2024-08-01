@@ -655,12 +655,6 @@ video {
   font-size: 6rem;
   line-height: 1;
 }
-.font-bold {
-  font-weight: 700;
-}
-.underline {
-  text-decoration-line: underline;
-}
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
