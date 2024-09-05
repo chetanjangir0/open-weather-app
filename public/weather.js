@@ -115,8 +115,7 @@ elements.searchButton.addEventListener('click', async (event) => {
 navigator.geolocation.getCurrentPosition(
     async (position) => await getWeatherByCoords(position.coords.latitude, position.coords.longitude),
     async () => {
-        alert("Couldn't find your location. Please search for a city.")
-        await getWeatherByCity(sanitizeString('delhi'))
+        await getWeatherByCity('delhi')
 
     }
 );
