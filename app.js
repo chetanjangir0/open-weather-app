@@ -4,16 +4,16 @@ const path = require('path');
 require('dotenv').config();
 const validator = require('validator');
 
+if (!process.env.OPENWEATHERMAP_API_KEY) {
+    throw new Error('OPENWEATHERMAP_API_KEY is not set in environment variables');
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
 app.get('/api/weather', async (req, res) => {
-    if (!process.env.OPENWEATHERMAP_API_KEY){
-        console.error('there is not api key')
-
-    }
     try {
         let url;
         if (req.query.lat && req.query.lon) {
@@ -30,11 +30,15 @@ app.get('/api/weather', async (req, res) => {
             return res.status(400).json({ error: 'Invalid parameters' });
         }
 
-        const response = await axios.get(url);
+        const response = await axios.get(url, { timeout: 5000 }); // 5 second timeout
         res.json(response.data);
     } catch (error) {
-        console.error('Error fetching weather data:', error);
-        res.status(500).json({ error: 'Failed to fetch weather data' });
+        console.error('Error fetching weather data:', error.message);
+        if (error.code === 'ECONNABORTED') {
+            res.status(504).json({ error: 'Request timed out' });
+        } else {
+            res.status(500).json({ error: 'Failed to fetch weather data' });
+        }
     }
 });
 
@@ -42,5 +46,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 module.exports = app;
