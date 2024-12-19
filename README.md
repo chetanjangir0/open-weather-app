@@ -1,4 +1,5 @@
-Welcome to the **Open Weather Application**! This is a simple weather app that uses the [OpenWeatherMap API](https://openweathermap.org/api) to fetch and display weather data for any city in real-time. It is built using **Node.js**, **Express**, **JavaScript**, **HTML**, and styled with **Tailwind CSS**.
+Welcome to the **Open Weather Application**! This is a simple weather app that uses the [OpenWeatherMap API](https://openweathermap.org/api) to fetch and display weather data for any city in real-time. It is built using **Node.js**, **Express**, **JavaScript**, **HTML**, and styled with **Tailwind CSS**. 
+#### you can use this app [here](https://open-weather-kappa-five.vercel.app/)
 
 ## 🌟 Features
 
